@@ -1,0 +1,66 @@
+﻿
+@model IPagedList<CountryCity.City>
+    
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    // IEnumerable
+
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <p>
+            @Html.ActionLink("Add City", "Create")
+            @Html.ActionLink("Add Country", "CreateCountry")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Country.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Country.Country1)
+                </th>
+                <th>
+                    City ID
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().City1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Country_ID)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country.Country1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country_ID)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+    </div>
+</div>
